@@ -93,3 +93,5 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.WindowsSe
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.Web.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.pdb
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.Initial.resources
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.csproj.GenerateResource.Cache
