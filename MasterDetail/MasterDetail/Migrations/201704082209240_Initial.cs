@@ -88,24 +88,24 @@ namespace MasterDetail.Migrations
 
             // Add a user defined function.
             Sql(@"CREATE FUNCTION dbo.GetSumOfPartsAndLabor(@workOrderId INT)
-                    RETURNS DECIMAL(18, 2)
-                    AS
-                    BEGIN
+                RETURNS DECIMAL(18, 2)
+                AS
+                BEGIN
 
-                    DECLARE @partsSum Decimal(18, 2);
-                    DECLARE @laborSum Decimal(18, 2);
+                DECLARE @partsSum Decimal(18, 2);
+                DECLARE @laborSum Decimal(18, 2);
 
-                    SELECT @partsSum = Sum(ExtendedPrice)
-                    FROM Parts
-                    WHERE WorkOrderId = @workOrderId;
+                SELECT @partsSum = Sum(ExtendedPrice)
+                FROM Parts
+                WHERE WorkOrderId = @workOrderId;
 
-                    SELECT @laborSum = Sum(ExtendedPrice)
-                    FROM Labors
-                    WHERE WorkOrderId = @workOrderId;
+                SELECT @laborSum = Sum(ExtendedPrice)
+                FROM Labors
+                WHERE WorkOrderId = @workOrderId;
 
-                    RETURN ISNULL(@partsSum, 0) + ISNULL(@laborSum, 0);
+                RETURN ISNULL(@partsSum, 0) + ISNULL(@laborSum, 0);
 
-                    END");
+                END");
 
             Sql("ALTER TABLE dbo.WorkOrders ADD Total AS dbo.GetSumOfPartsAndLabor(WorkOrderId)");
 
