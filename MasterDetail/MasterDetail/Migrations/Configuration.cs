@@ -1,3 +1,4 @@
+using MasterDetail.DataLayer;
 using MasterDetail.Models;
 
 namespace MasterDetail.Migrations
@@ -7,14 +8,14 @@ namespace MasterDetail.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MasterDetail.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(MasterDetail.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             string accountNumber = "ABC123";
 

@@ -191,6 +191,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DataLayer\ApplicationDbContext.cs" />
     <Compile Include="DataLayer\CategoryConfiguration.cs" />
     <Compile Include="DataLayer\CustomerConfiguration.cs" />
     <Compile Include="DataLayer\InventoryItemConfiguration.cs" />
