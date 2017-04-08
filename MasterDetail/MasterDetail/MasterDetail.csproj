@@ -193,6 +193,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataLayer\CategoryConfiguration.cs" />
     <Compile Include="DataLayer\InventoryItemConfiguration.cs" />
+    <Compile Include="DataLayer\LaborConfiguration.cs" />
+    <Compile Include="DataLayer\PartConfiguration.cs" />
     <Compile Include="DataLayer\ServiceItemConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -201,7 +203,9 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InventoryItem.cs" />
+    <Compile Include="Models\Labor.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Part.cs" />
     <Compile Include="Models\ServiceItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
