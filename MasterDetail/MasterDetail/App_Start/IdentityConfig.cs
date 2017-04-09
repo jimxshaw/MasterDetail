@@ -15,6 +15,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using MasterDetail.Models;
+using Twilio;
 
 namespace MasterDetail
 {
@@ -46,7 +47,14 @@ namespace MasterDetail
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your SMS service here to send a text message.
+            const string accountSid = "";
+            const string authToken = "";
+            const string phoneNumber = "";
+
+            var twilioRestClient = new TwilioRestClient(accountSid, authToken);
+            twilioRestClient.SendSmsMessage(phoneNumber, message.Destination, message.Body);
+
+            // Twilio doesn't know about async tasks so we have to return a task of our own.
             return Task.FromResult(0);
         }
     }

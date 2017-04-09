@@ -54,6 +54,7 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.Owin.Securit
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.Web.Infrastructure.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Newtonsoft.Json.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Owin.dll
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\RestSharp.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.Helpers.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.Mvc.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.Optimization.dll
@@ -61,8 +62,10 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.Razor.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.WebPages.Deployment.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.WebPages.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.WebPages.Razor.dll
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Twilio.Api.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\WebGrease.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\RestSharp.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.Helpers.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.Mvc.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.Optimization.xml
@@ -70,6 +73,8 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.Razor.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.WebPages.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.WebPages.Deployment.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.WebPages.Razor.xml
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Twilio.Api.pdb
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Twilio.Api.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Antlr3.Runtime.pdb
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Newtonsoft.Json.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\EntityFramework.xml
@@ -91,8 +96,8 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.Dependenc
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.WindowsServer.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.Web.xml
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.Initial.resources
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.Identity.resources
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.csproj.GenerateResource.Cache
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.pdb
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.Initial.resources
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.csproj.GenerateResource.Cache
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.Identity.resources
