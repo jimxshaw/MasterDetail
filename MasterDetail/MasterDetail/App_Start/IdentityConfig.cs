@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Services.Description;
 using MasterDetail.DataLayer;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -20,7 +23,22 @@ namespace MasterDetail
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            const string USERNAME = "Tester123";
+            const string FROM = "tester123@testemail.org"; // fake email
+            const string PASSWORD = "Password123!"; // fake password
+            const int PORT = 587;
+
+            var smtpClient = new SmtpClient("smtp.sendgrid.net", PORT);
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.EnableSsl = true;
+            smtpClient.Credentials = new NetworkCredential(USERNAME, PASSWORD);
+
+            var mailMessage = new MailMessage(FROM, message.Destination);
+            mailMessage.Subject = message.Subject;
+            mailMessage.Body = message.Body;
+
+            return smtpClient.SendMailAsync(mailMessage);
         }
     }
 
