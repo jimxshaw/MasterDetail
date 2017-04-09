@@ -28,7 +28,7 @@ namespace MasterDetail.DataLayer
                 .HasMaxLength(120)
                 .IsOptional();
 
-
+            HasRequired(wo => wo.CurrentWorker);
 
         }
     }
