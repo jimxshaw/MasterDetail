@@ -80,7 +80,25 @@ namespace MasterDetail.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Display(Name = "First Name")]
+        [StringLength(15, ErrorMessage = "First name must be 15 characters or shorter.")]
         public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
+        [StringLength(15, ErrorMessage = "Last name must be 15 characters or shorter.")]
+        public string LastName { get; set; }
+
+        [StringLength(30, ErrorMessage = "Address must be 30 characters or shorter.")]
+        public string Address { get; set; }
+
+        [StringLength(20, ErrorMessage = "City must be 20 characters or shorter.")]
+        public string City { get; set; }
+
+        [StringLength(2, ErrorMessage = "State must have 2 characters.", MinimumLength = 2)]
+        public string State { get; set; }
+
+        [StringLength(10, ErrorMessage = "Zip Code must be 10 characters or shorter.")]
+        public string ZipCode { get; set; }
     }
 
     public class ResetPasswordViewModel

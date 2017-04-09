@@ -162,7 +162,18 @@ namespace MasterDetail.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Address = model.Address,
+                    City = model.City,
+                    State = model.State,
+                    ZipCode = model.ZipCode
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 await UserManager.SetTwoFactorEnabledAsync(user.Id, false);
@@ -171,6 +182,7 @@ namespace MasterDetail.Controllers
                 {
                     return await GenerateEmailConfirmation(user);
                 }
+
                 AddErrors(result);
             }
 
