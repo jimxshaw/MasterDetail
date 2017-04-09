@@ -28,7 +28,13 @@ namespace MasterDetail.DataLayer
                 .HasMaxLength(120)
                 .IsOptional();
 
-            HasRequired(wo => wo.CurrentWorker);
+            HasRequired(wo => wo.CurrentWorker)
+                .WithMany(au => au.WorkOrders)
+                .WillCascadeOnDelete(false);
+
+            HasRequired(wo => wo.Customer)
+                .WithMany(c => c.WorkOrders)
+                .WillCascadeOnDelete(false);
 
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using MasterDetail.DataLayer;
@@ -16,6 +17,12 @@ namespace MasterDetail.Models
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
+
+        // Since we specified in WorkOrderConfiguration that the relationship
+        // between ApplicationUser & WorkOrder will NOT cascade delete, we have to 
+        // explicitly add a WorkOrder collection property in this model class.
+        public List<WorkOrder> WorkOrders { get; set; }
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

@@ -15,5 +15,10 @@ namespace MasterDetail.Models
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string Phone { get; set; }
+
+        // Since we specified in WorkOrderConfiguration that the relationship
+        // between Customer & WorkOrder will NOT cascade delete, we have to 
+        // explicitly add a property of WorkOrder collection in this model class.
+        public List<WorkOrder> WorkOrders { get; set; }
     }
 }

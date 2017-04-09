@@ -103,3 +103,4 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.csp
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.pdb
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.IntegratedModel.resources
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.Cascading.resources
