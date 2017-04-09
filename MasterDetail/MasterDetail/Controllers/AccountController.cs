@@ -169,23 +169,45 @@ namespace MasterDetail.Controllers
 
                 if (result.Succeeded)
                 {
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-
-                    var callbackUrl = Url.Action(
-                        "ConfirmEmail",
-                        "Account",
-                        new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-
-                    await UserManager.SendEmailAsync(
-                        user.Id,
-                        "Confirm your account",
-                        "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    return await GenerateEmailConfirmation(user);
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public async Task<ActionResult> GenerateEmailConfirmation(ApplicationUser user)
+        {
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+
+            var callbackUrl = Url.Action(
+                "ConfirmEmail",
+                "Account",
+                new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+            await UserManager.SendEmailAsync(
+                user.Id,
+                "Confirm your account",
+                "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+            return View("CheckYourEmail");
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ActionResult> RegenerateEmailConfirmation(string email)
+        {
+            var user = await UserManager.FindByNameAsync(email);
+
+            if (user != null)
+            {
+                return RedirectToAction("GenerateEmailConfirmation", user);
+            }
+
+            return View("Login");
         }
 
         //
