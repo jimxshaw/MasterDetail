@@ -63,6 +63,77 @@ namespace MasterDetail.Controllers
             return RedirectToAction("Index", new { message = ManageMessageId.Error });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangeProfile(ApplicationUser applicationUser)
+        {
+            ManageMessageId manageMessageId;
+
+            ApplicationUser retrievedApplicationUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            retrievedApplicationUser.FirstName = applicationUser.FirstName;
+            retrievedApplicationUser.LastName = applicationUser.LastName;
+            retrievedApplicationUser.Address = applicationUser.Address;
+            retrievedApplicationUser.City = applicationUser.City;
+            retrievedApplicationUser.State = applicationUser.State;
+            retrievedApplicationUser.ZipCode = applicationUser.ZipCode;
+
+            // Update the Profile
+            var result = await UserManager.UpdateAsync(retrievedApplicationUser);
+            if (result.Succeeded)
+            {
+                manageMessageId = ManageMessageId.ChangeProfileSuccess;
+
+                // If the Email address changed, sync both Email and UserName to it
+                if (retrievedApplicationUser.Email != applicationUser.Email)
+                {
+                    // Update the UserName
+                    string previousUserName = retrievedApplicationUser.UserName;
+                    retrievedApplicationUser.UserName = applicationUser.Email;
+                    result = await UserManager.UpdateAsync(retrievedApplicationUser);
+                    if (result.Succeeded)
+                    {
+                        // Update the Email address
+                        result = await UserManager.SetEmailAsync(retrievedApplicationUser.Id, applicationUser.Email);
+                        if (result.Succeeded)
+                        {
+                            manageMessageId = ManageMessageId.ChangeEmailSuccess;
+
+                            string code =
+                                await UserManager.GenerateEmailConfirmationTokenAsync(retrievedApplicationUser.Id);
+
+                            var callbackUrl = Url.Action(
+                                "ConfirmEmail",
+                                "Account",
+                                new { userId = retrievedApplicationUser.Id, code = code }, protocol: Request.Url.Scheme);
+
+                            await UserManager.SendEmailAsync(
+                                retrievedApplicationUser.Id,
+                                "Confirm your account",
+                                "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                        }
+                        else
+                        {
+                            retrievedApplicationUser.UserName = previousUserName;
+                            result = await UserManager.UpdateAsync(retrievedApplicationUser);
+                            manageMessageId = ManageMessageId.Error;
+                        }
+                    }
+                    else
+                    {
+                        retrievedApplicationUser.UserName = previousUserName;
+                        result = await UserManager.UpdateAsync(retrievedApplicationUser);
+                        manageMessageId = ManageMessageId.Error;
+                    }
+                }
+            }
+            else
+            {
+                manageMessageId = ManageMessageId.Error;
+            }
+
+
+            return RedirectToAction("Index", new { Message = manageMessageId });
+        }
 
 
         //
