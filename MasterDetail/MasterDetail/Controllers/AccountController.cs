@@ -164,6 +164,9 @@ namespace MasterDetail.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+                await UserManager.SetTwoFactorEnabledAsync(user.Id, false);
+
                 if (result.Succeeded)
                 {
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
