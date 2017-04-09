@@ -16,11 +16,13 @@ namespace MasterDetail.DataLayer
         {
             Property(c => c.AccountNumber)
                 .HasMaxLength(8)
-                .IsRequired().HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("AK_Customer_AccountNumber") { IsUnique = true }));
+                .IsRequired()
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("AK_Customer_AccountNumber") { IsUnique = true }));
 
             Property(c => c.CompanyName)
                 .HasMaxLength(30)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("AK_Customer_CompanyName") { IsUnique = true }));
 
             Property(c => c.Address)
                 .HasMaxLength(30)
