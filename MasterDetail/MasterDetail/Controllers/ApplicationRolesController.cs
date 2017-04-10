@@ -14,6 +14,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace MasterDetail.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     public class ApplicationRolesController : Controller
     {
         private ApplicationUserManager _userManager;
@@ -116,7 +117,10 @@ namespace MasterDetail.Controllers
             {
                 return HttpNotFound();
             }
-            return View(applicationRole);
+
+            ApplicationRoleViewModel applicationRoleViewModel = new ApplicationRoleViewModel() { Id = applicationRole.Id, Name = applicationRole.Name };
+
+            return View(applicationRoleViewModel);
         }
 
         // POST: ApplicationRoles/Edit/5
@@ -124,34 +128,34 @@ namespace MasterDetail.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] ApplicationRole applicationRole)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] ApplicationRoleViewModel applicationRoleViewModel)
         {
             if (ModelState.IsValid)
             {
-                ApplicationRole retrievedApplicationRole = await RoleManager.FindByIdAsync(applicationRole.Id);
-                string originalName = retrievedApplicationRole.Name;
+                ApplicationRole applicationRole = await RoleManager.FindByIdAsync(applicationRoleViewModel.Id);
+                string originalName = applicationRole.Name;
 
-                if (originalName == "Admin" && applicationRole.Name != "Admin")
+                if (originalName == "Admin" && applicationRoleViewModel.Name != "Admin")
                 {
                     ModelState.AddModelError("", "You cannot change the name of the Admin role.");
 
-                    return View(applicationRole);
+                    return View(applicationRoleViewModel);
                 }
 
-                if (originalName != "Admin" && applicationRole.Name == "Admin")
+                if (originalName != "Admin" && applicationRoleViewModel.Name == "Admin")
                 {
                     ModelState.AddModelError("", "You cannot change the name of a role to Admin.");
 
-                    return View(applicationRole);
+                    return View(applicationRoleViewModel);
                 }
 
-                retrievedApplicationRole.Name = applicationRole.Name;
+                applicationRole.Name = applicationRoleViewModel.Name;
 
-                await RoleManager.UpdateAsync(retrievedApplicationRole);
+                await RoleManager.UpdateAsync(applicationRole);
 
                 return RedirectToAction("Index");
             }
-            return View(applicationRole);
+            return View(applicationRoleViewModel);
         }
 
         // GET: ApplicationRoles/Delete/5
