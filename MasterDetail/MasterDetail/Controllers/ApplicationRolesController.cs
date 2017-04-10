@@ -56,43 +56,50 @@ namespace MasterDetail.Controllers
 
         //private ApplicationDbContext db = new ApplicationDbContext();
 
-        //// GET: ApplicationRoles/Details/5
-        //public async Task<ActionResult> Details(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    ApplicationRole applicationRole = await db.IdentityRoles.FindAsync(id);
-        //    if (applicationRole == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(applicationRole);
-        //}
+        // GET: ApplicationRoles/Details/5
+        public async Task<ActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationRole applicationRole = await RoleManager.FindByIdAsync(id);
+            if (applicationRole == null)
+            {
+                return HttpNotFound();
+            }
+            return View(applicationRole);
+        }
 
-        //// GET: ApplicationRoles/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: ApplicationRoles/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
 
-        //// POST: ApplicationRoles/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include = "Id,Name")] ApplicationRole applicationRole)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.IdentityRoles.Add(applicationRole);
-        //        await db.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: ApplicationRoles/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create([Bind(Include = "Name")] ApplicationRole applicationRole)
+        {
+            if (ModelState.IsValid)
+            {
+                var roleResult = await RoleManager.CreateAsync(applicationRole);
 
-        //    return View(applicationRole);
-        //}
+                if (!roleResult.Succeeded)
+                {
+                    ModelState.AddModelError("", roleResult.Errors.First());
+
+                    return View();
+                }
+
+                return RedirectToAction("Index");
+            }
+
+            return View(applicationRole);
+        }
 
         //// GET: ApplicationRoles/Edit/5
         //public async Task<ActionResult> Edit(string id)
