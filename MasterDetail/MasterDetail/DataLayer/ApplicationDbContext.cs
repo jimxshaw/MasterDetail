@@ -41,5 +41,7 @@ namespace MasterDetail.DataLayer
 
             base.OnModelCreating(modelBuilder);
         }
+
+
     }
 }
