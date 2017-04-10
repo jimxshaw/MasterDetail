@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using MasterDetail.DataLayer;
 using MasterDetail.Models;
+using MasterDetail.ViewModels;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace MasterDetail.Controllers
@@ -82,10 +83,12 @@ namespace MasterDetail.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Name")] ApplicationRole applicationRole)
+        public async Task<ActionResult> Create([Bind(Include = "Name")] ApplicationRoleViewModel applicationRoleViewModel)
         {
             if (ModelState.IsValid)
             {
+                ApplicationRole applicationRole = new ApplicationRole() { Name = applicationRoleViewModel.Name };
+
                 var roleResult = await RoleManager.CreateAsync(applicationRole);
 
                 if (!roleResult.Succeeded)
@@ -98,7 +101,7 @@ namespace MasterDetail.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(applicationRole);
+            return View(applicationRoleViewModel);
         }
 
         // GET: ApplicationRoles/Edit/5
@@ -151,31 +154,39 @@ namespace MasterDetail.Controllers
             return View(applicationRole);
         }
 
-        //// GET: ApplicationRoles/Delete/5
-        //public async Task<ActionResult> Delete(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    ApplicationRole applicationRole = await db.IdentityRoles.FindAsync(id);
-        //    if (applicationRole == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(applicationRole);
-        //}
+        // GET: ApplicationRoles/Delete/5
+        public async Task<ActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationRole applicationRole = await RoleManager.FindByIdAsync(id);
+            if (applicationRole == null)
+            {
+                return HttpNotFound();
+            }
+            return View(applicationRole);
+        }
 
-        //// POST: ApplicationRoles/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(string id)
-        //{
-        //    ApplicationRole applicationRole = await db.IdentityRoles.FindAsync(id);
-        //    db.IdentityRoles.Remove(applicationRole);
-        //    await db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
+        // POST: ApplicationRoles/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(string id)
+        {
+            ApplicationRole applicationRole = await RoleManager.FindByIdAsync(id);
+
+            if (applicationRole.Name == "Admin")
+            {
+                ModelState.AddModelError("", "You cannot delete the Admin Role");
+
+                return View(applicationRole);
+            }
+
+            await RoleManager.DeleteAsync(applicationRole);
+
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {
