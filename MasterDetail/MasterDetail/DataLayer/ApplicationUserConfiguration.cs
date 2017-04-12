@@ -35,6 +35,8 @@ namespace MasterDetail.DataLayer
             Property(au => au.ZipCode)
                 .HasMaxLength(10)
                 .IsOptional();
+
+            Ignore(au => au.RolesList);
         }
     }
 }

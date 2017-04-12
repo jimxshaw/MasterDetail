@@ -28,8 +28,6 @@ namespace MasterDetail.DataLayer
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<MasterDetail.Models.ApplicationUser> ApplicationUsers { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new CategoryConfiguration());

@@ -96,7 +96,6 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.Dependenc
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.WindowsServer.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.Web.xml
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.csprojResolveAssemblyReference.cache
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.Initial.resources
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.Identity.resources
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.UserAddress.resources
