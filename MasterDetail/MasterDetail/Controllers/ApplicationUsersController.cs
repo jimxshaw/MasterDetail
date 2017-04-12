@@ -20,29 +20,19 @@ namespace MasterDetail.Controllers
 
 
         private ApplicationUserManager _userManager;
+
         public ApplicationUserManager UserManager
         {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            get { return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+            private set { _userManager = value; }
         }
 
         private ApplicationRoleManager _roleManager;
+
         public ApplicationRoleManager RoleManager
         {
-            get
-            {
-                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
-            }
-            private set
-            {
-                _roleManager = value;
-            }
+            get { return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>(); }
+            private set { _roleManager = value; }
         }
 
         public ApplicationUsersController()
@@ -129,7 +119,8 @@ namespace MasterDetail.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id")] ApplicationUser applicationUser, params string[] rolesSelectedOnView)
+        public async Task<ActionResult> Edit([Bind(Include = "Id")] ApplicationUser applicationUser,
+            params string[] rolesSelectedOnView)
         {
             if (ModelState.IsValid)
             {
@@ -157,7 +148,8 @@ namespace MasterDetail.Controllers
                 // then prevent the removal of the Admin role.
                 if (isThisUserAnAdmin && isThisUserAdminDeselected && isOnlyOneUserAnAdmin)
                 {
-                    ModelState.AddModelError("", "At least one user must retain the Admin role; you are attempting to delete the Admin role from the last user who has been assigned to it.");
+                    ModelState.AddModelError("",
+                        "At least one user must retain the Admin role; you are attempting to delete the Admin role from the last user who has been assigned to it.");
 
                     return View(applicationUser);
                 }
@@ -192,31 +184,21 @@ namespace MasterDetail.Controllers
             return View(applicationUser);
         }
 
-        //// GET: ApplicationUsers/Delete/5
-        //public async Task<ActionResult> Delete(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    ApplicationUser applicationUser = await db.ApplicationUsers.FindAsync(id);
-        //    if (applicationUser == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(applicationUser);
-        //}
+        public async Task<ActionResult> LockAccount([Bind(Include = "Id")] string id)
+        {
+            await UserManager.ResetAccessFailedCountAsync(id);
+            await UserManager.SetLockoutEndDateAsync(id, DateTime.UtcNow.AddYears(100));
 
-        //// POST: ApplicationUsers/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(string id)
-        //{
-        //    ApplicationUser applicationUser = await db.ApplicationUsers.FindAsync(id);
-        //    db.ApplicationUsers.Remove(applicationUser);
-        //    await db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
+            return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> UnlockAccount([Bind(Include = "Id")] string id)
+        {
+            await UserManager.ResetAccessFailedCountAsync(id);
+            await UserManager.SetLockoutEndDateAsync(id, DateTime.UtcNow.AddYears(-1));
+
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {
