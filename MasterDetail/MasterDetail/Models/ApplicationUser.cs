@@ -23,6 +23,20 @@ namespace MasterDetail.Models
         // explicitly add a WorkOrder collection property in this model class.
         public List<WorkOrder> WorkOrders { get; set; }
 
+        public string FullName => FirstName + " " + LastName;
+
+        public string AddressBlock
+        {
+            get
+            {
+                string addressBlock = string.Format($"{Address}<br/>{City}, {State} {ZipCode}").Trim();
+
+                return addressBlock == "<br/>," ? string.Empty : addressBlock;
+            }
+        }
+
+
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
