@@ -156,8 +156,11 @@ namespace MasterDetail.Controllers
             string content = string.Empty;
 
             // Add <li> category name.
-            content += "<li>";
+            content += "<li class=\"treenode\">";
             content += parent.CategoryName;
+            content += string.Format($"<a href=\"/Categories/Edit/{parent.Id}\" class=\"btn btn-primary btn-xs treenodeeditbutton\">Edit</a>");
+            content += string.Format($"<a href=\"/Categories/Delete/{parent.Id}\" class=\"btn btn-danger btn-xs treenodedeletebutton\">Delete</a>");
+
 
             // If there are no children, end the </li>.
             if (parent.Children.Count == 0)
