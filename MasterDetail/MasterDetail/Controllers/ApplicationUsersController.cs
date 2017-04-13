@@ -14,6 +14,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace MasterDetail.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ApplicationUsersController : Controller
     {
         //private ApplicationDbContext db = new ApplicationDbContext();

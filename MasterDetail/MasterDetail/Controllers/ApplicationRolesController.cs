@@ -14,7 +14,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace MasterDetail.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class ApplicationRolesController : Controller
     {
         private ApplicationUserManager _userManager;

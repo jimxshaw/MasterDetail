@@ -12,18 +12,46 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+
+                <a class="navbar-brand" href="/">
+                    <img src="~/Images/AwesomeWomenEmpowered.fw.png" />
+                </a>
+
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                    @* Security *@
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">Security <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Roles", "Index", "ApplicationRoles")</li>
+                            <li>@Html.ActionLink("Users", "Index", "ApplicationUsers")</li>
+                        </ul>
+                    </li>
+
+                    @* Catalog *@
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">Catalog <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Inventory Items", "Index", "InventoryItems")</li>
+                            <li>@Html.ActionLink("Service Items", "Index", "ServiceItems")</li>
+                        </ul>
+                    </li>
+
+                    <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
+                    <li>@Html.ActionLink("Work Orders", "Index", "WorkOrders")</li>
+
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -33,7 +61,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Awesome Women Empowered</p>
         </footer>
     </div>
 
