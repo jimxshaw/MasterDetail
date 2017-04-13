@@ -238,6 +238,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\InventoryItem.cs" />
+    <Compile Include="Models\ITreeNodeDotNet3.cs" />
     <Compile Include="Models\Labor.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Part.cs" />

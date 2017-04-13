@@ -104,4 +104,3 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Mig
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.csproj.GenerateResource.Cache
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.pdb
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.csprojResolveAssemblyReference.cache
