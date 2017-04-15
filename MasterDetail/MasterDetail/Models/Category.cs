@@ -33,8 +33,6 @@ namespace MasterDetail.Models
         [Display(Name = "Category")]
         public string CategoryName { get; set; }
 
-        public virtual List<InventoryItem> InventoryItems { get; set; }
-
         public virtual Category Parent { get; set; }
 
         public IList<Category> Children { get; set; }

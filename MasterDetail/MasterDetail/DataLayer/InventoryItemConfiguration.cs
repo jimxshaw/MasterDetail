@@ -29,7 +29,7 @@ namespace MasterDetail.DataLayer
                 .HasPrecision(18, 2);
 
             HasRequired(ii => ii.Category)
-                .WithMany(cat => cat.InventoryItems)
+                .WithMany()
                 .WillCascadeOnDelete(false);
         }
     }
