@@ -42,7 +42,7 @@ namespace MasterDetail.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.ParentCategoryId = new SelectList(_applicationDbContext.Categories, "Id", "CategoryName");
+            ViewBag.ParentCategoryId = PopulateParentCategorySelectList(null);
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace MasterDetail.Controllers
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", ex.Message);
-                    ViewBag.ParentCategoryId = new SelectList(_applicationDbContext.Categories, "Id", "CategoryName");
+                    ViewBag.ParentCategoryId = PopulateParentCategorySelectList(null);
 
                     return View(category);
                 }
@@ -72,7 +72,7 @@ namespace MasterDetail.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ParentCategoryId = new SelectList(_applicationDbContext.Categories, "Id", "CategoryName", category.ParentCategoryId);
+            ViewBag.ParentCategoryId = PopulateParentCategorySelectList(category.ParentCategoryId);
 
             return View(category);
         }
@@ -98,7 +98,7 @@ namespace MasterDetail.Controllers
             categoryViewModel.ParentCategoryId = category.ParentCategoryId;
             categoryViewModel.CategoryName = category.CategoryName;
 
-            ViewBag.ParentCategoryId = new SelectList(_applicationDbContext.Categories, "Id", "CategoryName", category.ParentCategoryId);
+            ViewBag.ParentCategoryId = PopulateParentCategorySelectList(category.ParentCategoryId);
 
             return View(categoryViewModel);
         }
@@ -124,7 +124,7 @@ namespace MasterDetail.Controllers
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", ex.Message);
-                    ViewBag.ParentCategoryId = new SelectList(_applicationDbContext.Categories, "Id", "CategoryName", categoryViewModel.ParentCategoryId);
+                    ViewBag.ParentCategoryId = PopulateParentCategorySelectList(categoryViewModel.ParentCategoryId);
 
                     return View("Edit", categoryViewModel);
                 }
@@ -135,7 +135,7 @@ namespace MasterDetail.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ParentCategoryId = new SelectList(_applicationDbContext.Categories, "Id", "CategoryName", categoryViewModel.ParentCategoryId);
+            ViewBag.ParentCategoryId = PopulateParentCategorySelectList(categoryViewModel.ParentCategoryId);
 
             return View(categoryViewModel);
         }
@@ -270,6 +270,38 @@ namespace MasterDetail.Controllers
             {
                 throw new InvalidOperationException("You cannot nest this category's children more than two levels deep.");
             }
+        }
+
+        private SelectList PopulateParentCategorySelectList(int? id)
+        {
+            SelectList selectedList;
+
+            if (id == null)
+            {
+                selectedList = new SelectList(
+                    _applicationDbContext
+                        .Categories
+                        .Where(c => c.ParentCategoryId == null), "Id", "CategoryName"
+                );
+            }
+            else if (_applicationDbContext.Categories.Count(c => c.ParentCategoryId == id) == 0)
+            {
+                selectedList = new SelectList(
+                    _applicationDbContext
+                        .Categories
+                        .Where(c => c.ParentCategoryId == null && c.Id != id), "Id", "CategoryName"
+                );
+            }
+            else
+            {
+                selectedList = new SelectList(
+                    _applicationDbContext
+                        .Categories
+                        .Where(c => false), "Id", "CategoryName"
+                );
+            }
+
+            return selectedList;
         }
     }
 }
