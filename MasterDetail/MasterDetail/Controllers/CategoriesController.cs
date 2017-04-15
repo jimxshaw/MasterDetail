@@ -53,12 +53,27 @@ namespace MasterDetail.Controllers
         {
             if (ModelState.IsValid)
             {
+                try
+                {
+                    ValidateParentsAreParentless(category);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    ViewBag.ParentCategoryId = new SelectList(_applicationDbContext.Categories, "Id", "CategoryName");
+
+                    return View(category);
+                }
+
+
                 _applicationDbContext.Categories.Add(category);
                 await _applicationDbContext.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
 
             ViewBag.ParentCategoryId = new SelectList(_applicationDbContext.Categories, "Id", "CategoryName", category.ParentCategoryId);
+
             return View(category);
         }
 
