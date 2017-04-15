@@ -26,7 +26,7 @@ namespace MasterDetail.Models
         [Display(Name = "Unit Price")]
         public decimal UnitPrice { get; set; }
 
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
