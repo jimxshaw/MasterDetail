@@ -103,6 +103,8 @@ namespace MasterDetail.Controllers
                     editedCategory.Id = categoryViewModel.Id;
                     editedCategory.ParentCategoryId = categoryViewModel.ParentCategoryId;
                     editedCategory.CategoryName = categoryViewModel.CategoryName;
+
+                    ValidateParentsAreParentless(editedCategory);
                 }
                 catch (Exception ex)
                 {
@@ -157,6 +159,10 @@ namespace MasterDetail.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+
 
         private List<Category> GetListOfNodes()
         {
@@ -223,6 +229,32 @@ namespace MasterDetail.Controllers
             }
 
             return content;
+        }
+
+        private void ValidateParentsAreParentless(Category category)
+        {
+            // If there is no parent then the category is the root and
+            // nothing more needs to be done.
+            if (category.ParentCategoryId == null)
+            {
+                return;
+            }
+
+            // The parent has a parent.
+            Category parentCategory = _applicationDbContext.Categories.Find(category.ParentCategoryId);
+
+            if (parentCategory.ParentCategoryId != null)
+            {
+                throw new InvalidOperationException("You cannot nest this category more than two levels deep.");
+            }
+
+            // The parent does NOT have a parent but the category being nested has children.
+            int numberOfChildren = _applicationDbContext.Categories.Count(c => c.ParentCategoryId == category.Id);
+
+            if (numberOfChildren > 0)
+            {
+                throw new InvalidOperationException("You cannot nest this category's children more than two levels deep.");
+            }
         }
     }
 }
