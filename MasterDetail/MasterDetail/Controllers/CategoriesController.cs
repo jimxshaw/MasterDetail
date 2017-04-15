@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using MasterDetail.DataLayer;
 using MasterDetail.Models;
+using MasterDetail.ViewModels;
 using TreeUtility;
 
 namespace MasterDetail.Controllers
@@ -68,28 +69,58 @@ namespace MasterDetail.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Category category = await _applicationDbContext.Categories.FindAsync(id);
+
             if (category == null)
             {
                 return HttpNotFound();
             }
+
+            // Wind up a Category view model.
+            var categoryViewModel = new CategoryViewModel();
+            categoryViewModel.Id = category.Id;
+            categoryViewModel.ParentCategoryId = category.ParentCategoryId;
+            categoryViewModel.CategoryName = category.CategoryName;
+
             ViewBag.ParentCategoryId = new SelectList(_applicationDbContext.Categories, "Id", "CategoryName", category.ParentCategoryId);
-            return View(category);
+
+            return View(categoryViewModel);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ParentCategoryId,CategoryName")] Category category)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,ParentCategoryId,CategoryName")] CategoryViewModel categoryViewModel)
         {
             if (ModelState.IsValid)
             {
-                _applicationDbContext.Entry(category).State = EntityState.Modified;
+                // Unwind back to a Category.
+                var editedCategory = new Category();
+
+                try
+                {
+                    editedCategory.Id = categoryViewModel.Id;
+                    editedCategory.ParentCategoryId = categoryViewModel.ParentCategoryId;
+                    editedCategory.CategoryName = categoryViewModel.CategoryName;
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    ViewBag.ParentCategoryId = new SelectList(_applicationDbContext.Categories, "Id", "CategoryName", categoryViewModel.ParentCategoryId);
+
+                    return View("Edit", categoryViewModel);
+                }
+
+                _applicationDbContext.Entry(editedCategory).State = EntityState.Modified;
                 await _applicationDbContext.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
-            ViewBag.ParentCategoryId = new SelectList(_applicationDbContext.Categories, "Id", "CategoryName", category.ParentCategoryId);
-            return View(category);
+
+            ViewBag.ParentCategoryId = new SelectList(_applicationDbContext.Categories, "Id", "CategoryName", categoryViewModel.ParentCategoryId);
+
+            return View(categoryViewModel);
         }
 
 
