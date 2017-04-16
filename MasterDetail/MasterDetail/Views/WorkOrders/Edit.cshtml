@@ -10,26 +10,26 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>WorkOrder</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.WorkOrderId)
 
+        @Html.HiddenFor(model => model.WorkOrderId)
+
         <div class="form-group">
-            @Html.LabelFor(model => model.CustomerId, "CustomerId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CustomerId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.Customer.CompanyName, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.OrderDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OrderDateTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OrderDateTime, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.OrderDateTime, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
@@ -60,16 +60,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.WorkOrderStatus, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.WorkOrderStatus, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.WorkOrderStatus, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.WorkOrderStatus, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
@@ -82,10 +80,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CurrentWorkerId, "CurrentWorkerId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CurrentWorkerId, "Current Worker", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CurrentWorkerId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CurrentWorkerId, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.CurrentWorker.FullName, new { @class = "form-control" })
             </div>
         </div>
 
