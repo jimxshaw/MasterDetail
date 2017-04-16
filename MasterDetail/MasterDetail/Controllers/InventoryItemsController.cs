@@ -16,7 +16,7 @@ namespace MasterDetail.Controllers
     {
         private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
 
-        public async Task<ActionResult> Index(string sort)
+        public async Task<ActionResult> Index(string sort, string search)
         {
             // If the sort string is null or empty then CategorySort is the default sort.
             ViewBag.CategorySort = string.IsNullOrEmpty(sort) ? "category_desc" : string.Empty;
@@ -25,6 +25,13 @@ namespace MasterDetail.Controllers
             ViewBag.UnitPriceSort = sort == "unitprice" ? "unitprice_desc" : "unitprice";
 
             var inventoryItems = _applicationDbContext.InventoryItems.Include(i => i.Category);
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                inventoryItems =
+                    inventoryItems.Where(
+                        ii => ii.InventoryItemCode.StartsWith(search) || ii.InventoryItemName.StartsWith(search));
+            }
 
             switch (sort)
             {
