@@ -40,21 +40,6 @@ namespace MasterDetail.Controllers
         }
 
 
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Part part = await _applicationDbContext.Parts.FindAsync(id);
-            if (part == null)
-            {
-                return HttpNotFound();
-            }
-            return View(part);
-        }
-
-
         public ActionResult Create()
         {
             ViewBag.WorkOrderId = new SelectList(_applicationDbContext.WorkOrders, "WorkOrderId", "Description");
