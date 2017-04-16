@@ -71,13 +71,17 @@ namespace MasterDetail.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Part part = await _applicationDbContext.Parts.FindAsync(id);
+
             if (part == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.WorkOrderId = new SelectList(_applicationDbContext.WorkOrders, "WorkOrderId", "Description", part.WorkOrderId);
-            return View(part);
+
+            return PartialView("_Edit", part);
         }
 
 
@@ -89,9 +93,12 @@ namespace MasterDetail.Controllers
             {
                 _applicationDbContext.Entry(part).State = EntityState.Modified;
                 await _applicationDbContext.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
+
             ViewBag.WorkOrderId = new SelectList(_applicationDbContext.WorkOrders, "WorkOrderId", "Description", part.WorkOrderId);
+
             return View(part);
         }
 
@@ -102,12 +109,15 @@ namespace MasterDetail.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Part part = await _applicationDbContext.Parts.FindAsync(id);
+
             if (part == null)
             {
                 return HttpNotFound();
             }
-            return View(part);
+
+            return PartialView("_Delete", part);
         }
 
 
@@ -118,6 +128,7 @@ namespace MasterDetail.Controllers
             Part part = await _applicationDbContext.Parts.FindAsync(id);
             _applicationDbContext.Parts.Remove(part);
             await _applicationDbContext.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
 
@@ -127,6 +138,7 @@ namespace MasterDetail.Controllers
             {
                 _applicationDbContext.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }
