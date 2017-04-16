@@ -57,11 +57,11 @@ namespace MasterDetail.Controllers
             {
                 _applicationDbContext.Parts.Add(part);
                 await _applicationDbContext.SaveChangesAsync();
-                return RedirectToAction("Index");
+
+                return Json(new { success = "true" });
             }
 
-            ViewBag.WorkOrderId = new SelectList(_applicationDbContext.WorkOrders, "WorkOrderId", "Description", part.WorkOrderId);
-            return View(part);
+            return PartialView("_Create", part);
         }
 
 
@@ -79,8 +79,6 @@ namespace MasterDetail.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.WorkOrderId = new SelectList(_applicationDbContext.WorkOrders, "WorkOrderId", "Description", part.WorkOrderId);
-
             return PartialView("_Edit", part);
         }
 
@@ -94,12 +92,10 @@ namespace MasterDetail.Controllers
                 _applicationDbContext.Entry(part).State = EntityState.Modified;
                 await _applicationDbContext.SaveChangesAsync();
 
-                return RedirectToAction("Index");
+                return Json(new { success = "true" });
             }
 
-            ViewBag.WorkOrderId = new SelectList(_applicationDbContext.WorkOrders, "WorkOrderId", "Description", part.WorkOrderId);
-
-            return View(part);
+            return PartialView("_Edit", part);
         }
 
 
@@ -129,7 +125,7 @@ namespace MasterDetail.Controllers
             _applicationDbContext.Parts.Remove(part);
             await _applicationDbContext.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            return Json(new { success = "true" });
         }
 
         protected override void Dispose(bool disposing)
