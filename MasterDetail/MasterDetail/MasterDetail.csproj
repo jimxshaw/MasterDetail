@@ -247,6 +247,10 @@
     <Compile Include="Migrations\201704130109119_Categories.Designer.cs">
       <DependentUpon>201704130109119_Categories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704162251555_PercentComplete.cs" />
+    <Compile Include="Migrations\201704162251555_PercentComplete.Designer.cs">
+      <DependentUpon>201704162251555_PercentComplete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -404,7 +408,6 @@
     <Content Include="Views\Parts\_Index.cshtml" />
     <Content Include="Views\Labors\Create.cshtml" />
     <Content Include="Views\Labors\Delete.cshtml" />
-    <Content Include="Views\Labors\Details.cshtml" />
     <Content Include="Views\Labors\Edit.cshtml" />
     <Content Include="Views\Labors\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\VeryLongDateTime.cshtml" />
@@ -435,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704130109119_Categories.resx">
       <DependentUpon>201704130109119_Categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704162251555_PercentComplete.resx">
+      <DependentUpon>201704162251555_PercentComplete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

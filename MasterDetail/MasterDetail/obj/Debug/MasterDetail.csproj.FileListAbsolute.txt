@@ -109,3 +109,4 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.Mvc.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.Mvc.xml
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.PercentComplete.resources
