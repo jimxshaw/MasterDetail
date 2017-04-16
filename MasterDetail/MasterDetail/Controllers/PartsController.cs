@@ -16,14 +16,30 @@ namespace MasterDetail.Controllers
     {
         private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
 
-        // GET: Parts
-        public async Task<ActionResult> Index()
+
+        //public async Task<ActionResult> Index(int workOrderId)
+        //{
+        //    ViewBag.WorkOrderId = workOrderId;
+
+        //    var parts = _applicationDbContext.Parts
+        //                                     .Where(p => p.WorkOrderId == workOrderId)
+        //                                     .OrderBy(p => p.InventoryItemCode);
+
+        //    return PartialView("_Index", await parts.ToListAsync());
+        //}
+
+        public ActionResult Index(int workOrderId)
         {
-            var parts = _applicationDbContext.Parts.Include(p => p.WorkOrder);
-            return View(await parts.ToListAsync());
+            ViewBag.WorkOrderId = workOrderId;
+
+            var parts = _applicationDbContext.Parts
+                                             .Where(p => p.WorkOrderId == workOrderId)
+                                             .OrderBy(p => p.InventoryItemCode);
+
+            return PartialView("_Index", parts.ToList());
         }
 
-        // GET: Parts/Details/5
+
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,16 +54,14 @@ namespace MasterDetail.Controllers
             return View(part);
         }
 
-        // GET: Parts/Create
+
         public ActionResult Create()
         {
             ViewBag.WorkOrderId = new SelectList(_applicationDbContext.WorkOrders, "WorkOrderId", "Description");
             return View();
         }
 
-        // POST: Parts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "PartId,WorkOrderId,InventoryItemCode,InventoryItemName,Quantity,UnitPrice,ExtendedPrice,Notes,IsInstalled")] Part part)
@@ -63,7 +77,7 @@ namespace MasterDetail.Controllers
             return View(part);
         }
 
-        // GET: Parts/Edit/5
+
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,9 +93,7 @@ namespace MasterDetail.Controllers
             return View(part);
         }
 
-        // POST: Parts/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "PartId,WorkOrderId,InventoryItemCode,InventoryItemName,Quantity,UnitPrice,ExtendedPrice,Notes,IsInstalled")] Part part)
@@ -96,7 +108,7 @@ namespace MasterDetail.Controllers
             return View(part);
         }
 
-        // GET: Parts/Delete/5
+
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -111,7 +123,7 @@ namespace MasterDetail.Controllers
             return View(part);
         }
 
-        // POST: Parts/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
