@@ -40,10 +40,12 @@ namespace MasterDetail.Controllers
         }
 
 
-        public ActionResult Create()
+        public ActionResult Create(int workOrderId)
         {
-            ViewBag.WorkOrderId = new SelectList(_applicationDbContext.WorkOrders, "WorkOrderId", "Description");
-            return View();
+            var part = new Part();
+            part.WorkOrderId = workOrderId;
+
+            return PartialView("_Create", part);
         }
 
 
