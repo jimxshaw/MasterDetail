@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using MasterDetail.DataLayer;
 using MasterDetail.Models;
+using PagedList;
 
 namespace MasterDetail.Controllers
 {
@@ -16,13 +17,17 @@ namespace MasterDetail.Controllers
     {
         private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
 
-        public async Task<ActionResult> Index(string sort, string search)
+        public ActionResult Index(string sort, string search, int? page)
         {
             // If the sort string is null or empty then CategorySort is the default sort.
             ViewBag.CategorySort = string.IsNullOrEmpty(sort) ? "category_desc" : string.Empty;
             ViewBag.ItemCodeSort = sort == "itemcode" ? "itemcode_desc" : "itemcode";
             ViewBag.NameSort = sort == "name" ? "name_desc" : "name";
             ViewBag.UnitPriceSort = sort == "unitprice" ? "unitprice_desc" : "unitprice";
+
+            // This is to retain prior sort and search strings across requests.
+            ViewBag.CurrentSort = sort;
+            ViewBag.CurrentSearch = search;
 
             var inventoryItems = _applicationDbContext.InventoryItems.Include(i => i.Category);
 
@@ -72,7 +77,12 @@ namespace MasterDetail.Controllers
                     break;
             }
 
-            return View(await inventoryItems.ToListAsync());
+            int pageSize = 3;
+            int pageNumber = page ?? 1;
+
+            // The ToPagedList doesn't have an async version. If it did then we'd use it
+            // and this Index action would also be async.
+            return View(inventoryItems.ToPagedList(pageNumber, pageSize));
         }
 
 
