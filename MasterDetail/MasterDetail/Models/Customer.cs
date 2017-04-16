@@ -29,7 +29,7 @@ namespace MasterDetail.Models
         public string City { get; set; }
 
         [Required(ErrorMessage = "You must enter a state.")]
-        [StringLength(2, MinimumLength = 2, ErrorMessage = "The state must be exactly 2 characters.")]
+        [StringLength(2, MinimumLength = 2, ErrorMessage = "The state must be exactly 2 characters long.")]
         public string State { get; set; }
 
         [Display(Name = "ZIP Code")]

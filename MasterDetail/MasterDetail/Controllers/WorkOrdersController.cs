@@ -59,14 +59,12 @@ namespace MasterDetail.Controllers
             if (ModelState.IsValid)
             {
                 workOrder.CurrentWorkerId = User.Identity.GetUserId();
-
                 _applicationDbContext.WorkOrders.Add(workOrder);
                 await _applicationDbContext.SaveChangesAsync();
 
                 return RedirectToAction("Edit", new { controller = "WorkOrders", action = "Edit", Id = workOrder.WorkOrderId });
             }
 
-            //ViewBag.CurrentWorkerId = new SelectList(_applicationDbContext.ApplicationUsers, "Id", "FirstName", workOrder.CurrentWorkerId);
             ViewBag.CustomerId = new SelectList(_applicationDbContext.Customers, "CustomerId", "AccountNumber", workOrder.CustomerId);
 
             return View(workOrder);
@@ -97,6 +95,8 @@ namespace MasterDetail.Controllers
         {
             if (ModelState.IsValid)
             {
+                workOrder.CurrentWorkerId = User.Identity.GetUserId();
+
                 _applicationDbContext.Entry(workOrder).State = EntityState.Modified;
                 await _applicationDbContext.SaveChangesAsync();
 
