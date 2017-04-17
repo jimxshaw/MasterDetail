@@ -29,21 +29,21 @@
         @Html.HiddenFor(model => model.WorkOrderId)
         @Html.HiddenFor(model => model.CustomerId)
 
-        <div class="form-group">
+        <div class="form-group form-group-sm">
             @Html.LabelFor(model => model.CustomerId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.Customer.CompanyName, new { @class = "form-control" })
+                @Html.EditorFor(model => model.Customer.CompanyName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group form-group-sm">
             @Html.LabelFor(model => model.OrderDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.OrderDateTime, "DateReadyOnly")
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group form-group-sm">
             @Html.LabelFor(model => model.TargetDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TargetDateTime, "DateWithPicker")
@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group form-group-sm">
             @Html.LabelFor(model => model.DropDeadDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DropDeadDateTime, "DateWithPicker")
@@ -59,7 +59,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group form-group-sm">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
@@ -67,21 +67,14 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group form-group-sm">
             @Html.LabelFor(model => model.WorkOrderStatus, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.WorkOrderStatus, new { @class = "form-control" })
+                @Html.EditorFor(model => model.WorkOrderStatus, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DisplayFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
-
-        <div class="form-group">
+        <div class="form-group form-group-sm">
             @Html.LabelFor(model => model.CertificationRequirements, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CertificationRequirements, new { htmlAttributes = new { @class = "form-control" } })
@@ -89,10 +82,10 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group form-group-sm">
             @Html.LabelFor(model => model.CurrentWorkerId, "Current Worker", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.CurrentWorker.FullName, new { @class = "form-control" })
+                @Html.EditorFor(model => model.CurrentWorker.FullName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             </div>
         </div>
 
@@ -101,14 +94,21 @@
                 @{Html.RenderAction("Index", "Parts", new { workOrderId = Model.WorkOrderId });}
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-md-offset-2 col-md-10">
                 @{Html.RenderAction("Index", "Labors", new { workOrderId = Model.WorkOrderId });}
             </div>
         </div>
+        
+        <div class="form-group form-group-sm">
+            @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Total, "CustomNumberFormat", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
 
-        <div class="form-group">
+        <div class="form-group form-group-sm">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
@@ -121,6 +121,6 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")    
+    @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/workorder.js"></script>
 }

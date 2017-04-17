@@ -399,7 +399,6 @@
     <Content Include="Views\ServiceItems\Index.cshtml" />
     <Content Include="Views\WorkOrders\Create.cshtml" />
     <Content Include="Views\WorkOrders\Delete.cshtml" />
-    <Content Include="Views\WorkOrders\Details.cshtml" />
     <Content Include="Views\WorkOrders\Edit.cshtml" />
     <Content Include="Views\WorkOrders\Index.cshtml" />
     <Content Include="Views\Parts\_Create.cshtml" />
@@ -414,6 +413,7 @@
     <Content Include="Views\Shared\EditorTemplates\DateWithPicker.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateReadyOnly.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CustomNumberFormat.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CustomNumberFormat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

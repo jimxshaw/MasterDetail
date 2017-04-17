@@ -34,7 +34,7 @@ namespace MasterDetail.Models
 
         public decimal Total { get; set; }
 
-        [Display(Name = "Certification Requirements")]
+        [Display(Name = "Certifications Needed")]
         [StringLength(120, ErrorMessage = "The certification requirements must be 120 characters or shorter.")]
         public string CertificationRequirements { get; set; }
 
