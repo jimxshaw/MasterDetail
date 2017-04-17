@@ -10,6 +10,14 @@
     </div>
 </div>
 
+<div id="laborsModal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="laborsModalContent"></div>
+        </div>
+    </div>
+</div>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -91,6 +99,12 @@
         <div class="row">
             <div class="col-md-offset-2 col-md-10">
                 @{Html.RenderAction("Index", "Parts", new { workOrderId = Model.WorkOrderId });}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-offset-2 col-md-10">
+                @{Html.RenderAction("Index", "Labors", new { workOrderId = Model.WorkOrderId });}
             </div>
         </div>
 
