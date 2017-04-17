@@ -413,6 +413,7 @@
     <Content Include="Views\Shared\DisplayTemplates\VeryLongDateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateWithPicker.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateReadyOnly.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\CustomNumberFormat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

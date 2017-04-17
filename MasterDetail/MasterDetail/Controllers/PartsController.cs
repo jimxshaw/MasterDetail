@@ -51,7 +51,7 @@ namespace MasterDetail.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "PartId,WorkOrderId,InventoryItemCode,InventoryItemName,Quantity,UnitPrice,ExtendedPrice,Notes,IsInstalled")] Part part)
+        public async Task<ActionResult> Create([Bind(Include = "PartId,WorkOrderId,InventoryItemCode,InventoryItemName,Quantity,UnitPrice,Notes,IsInstalled")] Part part)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace MasterDetail.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "PartId,WorkOrderId,InventoryItemCode,InventoryItemName,Quantity,UnitPrice,ExtendedPrice,Notes,IsInstalled")] Part part)
+        public async Task<ActionResult> Edit([Bind(Include = "PartId,WorkOrderId,InventoryItemCode,InventoryItemName,Quantity,UnitPrice,Notes,IsInstalled")] Part part)
         {
             if (ModelState.IsValid)
             {
