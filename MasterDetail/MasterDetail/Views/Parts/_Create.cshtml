@@ -23,7 +23,14 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.InventoryItemCode, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.InventoryItemCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.InventoryItemCode, new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "ui-autocomplete-input form-control",
+                       data_url = Url.Action("GetInventoryItemsForAutocomplete", "InventoryItems")
+                   }
+               })
                     @Html.ValidationMessageFor(model => model.InventoryItemCode, "", new { @class = "text-danger" })
                 </div>
             </div>

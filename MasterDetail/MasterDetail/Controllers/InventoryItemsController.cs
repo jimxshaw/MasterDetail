@@ -206,5 +206,21 @@ namespace MasterDetail.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        public JsonResult GetInventoryItemsForAutocomplete(string term)
+        {
+            InventoryItem[] matchingInventoryItems = string.IsNullOrWhiteSpace(term)
+                ? null
+                : _applicationDbContext.InventoryItems.Where(
+                    ii => ii.InventoryItemCode.Contains(term) || ii.InventoryItemName.Contains(term)).ToArray();
+
+            return Json(matchingInventoryItems.Select(m => new
+            {
+                id = m.InventoryItemCode,
+                value = m.InventoryItemCode,
+                label = string.Format($"{m.InventoryItemCode}: {m.InventoryItemName}")
+            }), JsonRequestBehavior.AllowGet);
+        }
     }
 }

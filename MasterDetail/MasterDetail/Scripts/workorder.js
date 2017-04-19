@@ -24,6 +24,28 @@
                     return false;
                 }
             });
+
+            $("#InventoryItemCode").autocomplete({
+                minLength: 1,
+                source: function (request, response) {
+                    var url = $(this.element).data("url");
+                    $.getJSON(url, { term: request.term }, function (data) {
+                        response(data);
+                    });
+                },
+                appendTo: $(".modal-body"),
+                select: function (event, ui) {
+                    $("#InventoryItemName").val(ui.item.InventoryItemName);
+                    $("#UnitPrice").val(ui.item.UnitPrice);
+                    recalculatePart();
+                    $("#Quantity").select();
+                },
+                change: function (event, ui) {
+                    if (!ui.item) {
+                        $(event.target).val("");
+                    }
+                }
+            });
         });
         return false;
     });
@@ -53,6 +75,28 @@
                     return false;
                 }
             });
+
+            $("#ServiceItemCode").autocomplete({
+                minLength: 1,
+                source: function (request, response) {
+                    var url = $(this.element).data("url");
+                    $.getJSON(url, { term: request.term }, function (data) {
+                        response(data);
+                    });
+                },
+                appendTo: $(".modal-body"),
+                select: function (event, ui) {
+                    $("#ServiceItemName").val(ui.item.ServiceItemName);
+                    $("#Rate").val(ui.item.Rate);
+                    recalculateLabor();
+                    $("#LaborHours").select();
+                },
+                change: function (event, ui) {
+                    if (!ui.item) {
+                        $(event.target).val("");
+                    }
+                }
+            });
         });
         return false;
     });
@@ -61,12 +105,20 @@
         recalculatePart();
     });
 
+    $("#partsModal").on("shown.bs.modal", function () {
+        $("#InventoryItemCode").focus();
+    });
+
     $("#partsModal").on("hide.bs.modal", function () {
         location.reload();
     });
 
     $("#laborsModal").on("show.bs.modal", function () {
         recalculateLabor();
+    });
+
+    $("#laborsModal").on("shown.bs.modal", function () {
+        $("#ServiceItemCode").focus();
     });
 
     $("#laborsModal").on("hide.bs.modal", function () {

@@ -54,6 +54,8 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.Owin.Securit
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.Web.Infrastructure.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Newtonsoft.Json.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Owin.dll
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.dll
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.Mvc.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\RestSharp.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.Helpers.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.Mvc.dll
@@ -65,6 +67,8 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.WebPages.Ra
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Twilio.Api.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\WebGrease.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.xml
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.Mvc.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\RestSharp.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.Helpers.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.Mvc.xml
@@ -102,11 +106,7 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Mig
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.IntegratedModel.resources
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.Cascading.resources
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.Categories.resources
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.PercentComplete.resources
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.csproj.GenerateResource.Cache
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.pdb
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.dll
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.Mvc.dll
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.xml
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.Mvc.xml
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.PercentComplete.resources
