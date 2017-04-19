@@ -36,6 +36,10 @@ namespace MasterDetail.DataLayer
                 .WithMany(c => c.WorkOrders)
                 .WillCascadeOnDelete(false);
 
+            Property(wo => wo.ReworkNotes)
+                .HasMaxLength(256)
+                .IsOptional();
+
         }
     }
 }
