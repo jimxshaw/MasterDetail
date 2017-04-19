@@ -125,5 +125,23 @@ namespace MasterDetail.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        public JsonResult GetServiceItemsForAutocomplete(string term)
+        {
+            ServiceItem[] matchingServiceItems = string.IsNullOrWhiteSpace(term)
+                ? null
+                : _applicationDbContext.ServiceItems.Where(
+                    ii => ii.ServiceItemCode.Contains(term) || ii.ServiceItemCode.Contains(term)).ToArray();
+
+            return Json(matchingServiceItems.Select(m => new
+            {
+                id = m.ServiceItemCode,
+                value = m.ServiceItemCode,
+                label = string.Format($"{m.ServiceItemCode}: {m.ServiceItemName}"),
+                ServiceItemName = m.ServiceItemName,
+                Rate = m.Rate
+            }), JsonRequestBehavior.AllowGet);
+        }
     }
 }

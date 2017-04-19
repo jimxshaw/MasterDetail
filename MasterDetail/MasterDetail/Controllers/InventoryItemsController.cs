@@ -219,7 +219,9 @@ namespace MasterDetail.Controllers
             {
                 id = m.InventoryItemCode,
                 value = m.InventoryItemCode,
-                label = string.Format($"{m.InventoryItemCode}: {m.InventoryItemName}")
+                label = string.Format($"{m.InventoryItemCode}: {m.InventoryItemName}"),
+                InventoryItemName = m.InventoryItemName,
+                UnitPrice = m.UnitPrice
             }), JsonRequestBehavior.AllowGet);
         }
     }
