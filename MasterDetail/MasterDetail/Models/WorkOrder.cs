@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace MasterDetail.Models
 {
@@ -41,6 +42,153 @@ namespace MasterDetail.Models
         public virtual ApplicationUser CurrentWorker { get; set; }
 
         public string CurrentWorkerId { get; set; }
+
+
+        // Claiming a work order does two things: First, it promotes the work order
+        // to its next active status "ing status". Second, it relates the work order
+        // to the authenticated user who claimed it.
+        public PromotionResult ClaimWorkOrder(string userId)
+        {
+            var promotionResult = new PromotionResult();
+
+            if (!promotionResult.Success)
+            {
+                return promotionResult;
+            }
+
+            // A work order could be claimed in Rejected, Created, Processed or Certified
+            // status. Use a switch statement to handle those scenarios.
+            switch (WorkOrderStatus)
+            {
+                case WorkOrderStatus.Rejected:
+                    promotionResult = PromoteToProcessing();
+                    break;
+                case WorkOrderStatus.Created:
+                    promotionResult = PromoteToProcessing();
+                    break;
+                case WorkOrderStatus.Processed:
+                    promotionResult = PromoteToCertifying();
+                    break;
+                case WorkOrderStatus.Certified:
+                    promotionResult = PromoteToApproving();
+                    break;
+            }
+
+            // After the switch statement, we assign userId to CurrentWorkerId
+            // if the promotion succeeded. E.g. When the current status is Rejected and
+            // the work order is claimed, it's status is promoted to Processing.
+            if (promotionResult.Success)
+            {
+                CurrentWorkerId = userId;
+            }
+
+            return promotionResult;
+        }
+
+
+        public PromotionResult PromoteWorkOrder(string command)
+        {
+            var promotionResult = new PromotionResult();
+
+            //switch (command)
+            //{
+            //    case "PromoteToCreated":
+            //        promotionResult = PromoteToCreated();
+            //        break;
+
+            //    case "PromoteToProcessed":
+            //        promotionResult = PromoteToProcessed();
+            //        break;
+
+            //    case "PromoteToCertified":
+            //        promotionResult = PromoteToCertified();
+            //        break;
+
+            //    case "PromoteToApproved":
+            //        promotionResult = PromoteToApproved();
+            //        break;
+
+            //    case "DemoteToCreated":
+            //        promotionResult = DemoteToCreated();
+            //        break;
+
+            //    case "DemoteToRejected":
+            //        promotionResult = DemoteToRejected();
+            //        break;
+
+            //    case "DemoteToCanceled":
+            //        promotionResult = DemoteToCanceled();
+            //        break;
+            //}
+
+            if (promotionResult.Success)
+            {
+                CurrentWorker = null;
+                CurrentWorkerId = null;
+
+            }
+
+            return promotionResult;
+        }
+
+
+        private PromotionResult PromoteToProcessing()
+        {
+            if (WorkOrderStatus == WorkOrderStatus.Created || WorkOrderStatus == WorkOrderStatus.Rejected)
+            {
+                WorkOrderStatus = WorkOrderStatus.Processing;
+            }
+
+            var promotionResult = new PromotionResult();
+            promotionResult.Success = WorkOrderStatus == WorkOrderStatus.Processing;
+
+            if (promotionResult.Success)
+                promotionResult.Message =
+                    $"Work order {WorkOrderId} successfully claimed by {HttpContext.Current.User.Identity.Name} and promoted to status {WorkOrderStatus}.";
+            else
+                promotionResult.Message = "Failed to promote the work order to Processing status because its current status prevented it.";
+
+            return promotionResult;
+        }
+
+
+        private PromotionResult PromoteToCertifying()
+        {
+            if (WorkOrderStatus == WorkOrderStatus.Processed)
+            {
+                WorkOrderStatus = WorkOrderStatus.Certifying;
+            }
+
+            var promotionResult = new PromotionResult();
+            promotionResult.Success = WorkOrderStatus == WorkOrderStatus.Certifying;
+
+            if (promotionResult.Success)
+                promotionResult.Message =
+                    $"Work order {WorkOrderId} successfully claimed by {HttpContext.Current.User.Identity.Name} and promoted to status {WorkOrderStatus}.";
+            else
+                promotionResult.Message = "Failed to promote the work order to Certifying status because its current status prevented it.";
+
+            return promotionResult;
+        }
+
+        private PromotionResult PromoteToApproving()
+        {
+            if (WorkOrderStatus == WorkOrderStatus.Certified)
+            {
+                WorkOrderStatus = WorkOrderStatus.Approving;
+            }
+
+            var promotionResult = new PromotionResult();
+            promotionResult.Success = WorkOrderStatus == WorkOrderStatus.Approving;
+
+            if (promotionResult.Success)
+                promotionResult.Message =
+                    $"Work order {WorkOrderId} successfully claimed by {HttpContext.Current.User.Identity.Name} and promoted to status {WorkOrderStatus}.";
+            else
+                promotionResult.Message = "Failed to promote the work order to Approving status because its current status prevented it.";
+
+            return promotionResult;
+        }
     }
 
     public enum WorkOrderStatus
