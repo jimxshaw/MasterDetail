@@ -142,6 +142,18 @@ namespace MasterDetail.Models
                 CurrentWorker = null;
                 CurrentWorkerId = null;
 
+                // Attempt auto-promotion from Certified to Approved if the total value of Parts & Labors
+                // is less than $5000.
+                if (WorkOrderStatus == WorkOrderStatus.Certified && Parts.Sum(p => p.ExtendedPrice) + Labors.Sum(l => l.ExtendedPrice) < 5000)
+                {
+                    PromotionResult autoPromotionResult = PromoteToApproved();
+
+                    if (autoPromotionResult.Success)
+                    {
+                        promotionResult = autoPromotionResult;
+                        promotionResult.Message = "AUTOMATIC PROMOTION: " + promotionResult.Message;
+                    }
+                }
             }
 
             return promotionResult;
