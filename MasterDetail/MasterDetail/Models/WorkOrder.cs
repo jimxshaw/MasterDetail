@@ -45,12 +45,15 @@ namespace MasterDetail.Models
 
     public enum WorkOrderStatus
     {
-        Created = 0,
-        InProcess = 10,
-        Rework = 15,
-        Submitted = 20,
-        Approved = 30,
-        Cancelled = -10,
-        Rejected = -20
+        Creating = 5,
+        Created = 10,
+        Processing = 15,
+        Processed = 20,
+        Certifying = 25,
+        Certified = 30,
+        Approving = 35,
+        Approved = 40,
+        Rejected = -10,
+        Cancelled = -20
     }
 }
