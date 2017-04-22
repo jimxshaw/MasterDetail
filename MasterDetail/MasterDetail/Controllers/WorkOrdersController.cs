@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 using MasterDetail.DataLayer;
 using MasterDetail.Models;
@@ -45,8 +46,7 @@ namespace MasterDetail.Controllers
 
         public ActionResult Create()
         {
-            //ViewBag.CurrentWorkerId = new SelectList(_applicationDbContext.ApplicationUsers, "Id", "FirstName");
-            ViewBag.CustomerId = new SelectList(_applicationDbContext.Customers, "CustomerId", "AccountNumber");
+            ViewBag.CustomerId = new SelectList(_applicationDbContext.Customers, "CustomerId", "CompanyName");
 
             return View();
         }
@@ -91,19 +91,41 @@ namespace MasterDetail.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "WorkOrderId,CustomerId,OrderDateTime,TargetDateTime,DropDeadDateTime,Description,WorkOrderStatus,CertificationRequirements,CurrentWorkerId")] WorkOrder workOrder)
+        public async Task<ActionResult> Edit([Bind(Include = "WorkOrderId,CustomerId,OrderDateTime,TargetDateTime,DropDeadDateTime,Description,WorkOrderStatus,CertificationRequirements,CurrentWorkerId,ReworkNotes")] WorkOrder workOrder, string command)
         {
             if (ModelState.IsValid)
             {
-                workOrder.CurrentWorkerId = User.Identity.GetUserId();
+                // Populate Parts and Labors.
+                workOrder.Parts =
+                    _applicationDbContext.Parts.Where(p => p.WorkOrderId == workOrder.WorkOrderId).ToList();
+                workOrder.Labors =
+                    _applicationDbContext.Labors.Where(l => l.WorkOrderId == workOrder.WorkOrderId).ToList();
+
+                var promotionResult = new PromotionResult();
+
+                if (command == "Save")
+                {
+                    promotionResult.Success = true;
+                }
+                else if (command == "Claim")
+                {
+                    promotionResult = workOrder.ClaimWorkOrder(User.Identity.GetUserId());
+                }
+                else
+                {
+                    promotionResult = workOrder.PromoteWorkOrder(command);
+                }
+
+                if (!promotionResult.Success)
+                {
+                    TempData["MessageToClient"] = promotionResult.Message;
+                }
 
                 _applicationDbContext.Entry(workOrder).State = EntityState.Modified;
                 await _applicationDbContext.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
-            //ViewBag.CurrentWorkerId = new SelectList(_applicationDbContext.ApplicationUsers, "Id", "FirstName", workOrder.CurrentWorkerId);
-            ViewBag.CustomerId = new SelectList(_applicationDbContext.Customers, "CustomerId", "AccountNumber", workOrder.CustomerId);
 
             return View(workOrder);
         }

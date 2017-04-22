@@ -67,10 +67,10 @@ namespace MasterDetail.Models
         {
             var promotionResult = new PromotionResult();
 
-            if (!promotionResult.Success)
-            {
-                return promotionResult;
-            }
+            //if (!promotionResult.Success)
+            //{
+            //    return promotionResult;
+            //}
 
             // A work order could be claimed in Rejected, Created, Processed or Certified
             // status. Use a switch statement to handle those scenarios.
