@@ -11,12 +11,20 @@ namespace MasterDetail.DataLayer
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Category> Categories { get; set; }
+
         public DbSet<Customer> Customers { get; set; }
+
         public DbSet<InventoryItem> InventoryItems { get; set; }
+
         public DbSet<Labor> Labors { get; set; }
+
         public DbSet<Part> Parts { get; set; }
+
         public DbSet<ServiceItem> ServiceItems { get; set; }
+
         public DbSet<WorkOrder> WorkOrders { get; set; }
+
+        public DbSet<LogEntry> LogEntries { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -38,6 +46,7 @@ namespace MasterDetail.DataLayer
             modelBuilder.Configurations.Add(new ServiceItemConfiguration());
             modelBuilder.Configurations.Add(new WorkOrderConfiguration());
             modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
+            modelBuilder.Configurations.Add(new LogEntryConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

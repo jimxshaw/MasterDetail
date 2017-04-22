@@ -220,6 +220,7 @@
     <Compile Include="DataLayer\CustomerConfiguration.cs" />
     <Compile Include="DataLayer\InventoryItemConfiguration.cs" />
     <Compile Include="DataLayer\LaborConfiguration.cs" />
+    <Compile Include="DataLayer\LogEntryConfiguration.cs" />
     <Compile Include="DataLayer\PartConfiguration.cs" />
     <Compile Include="DataLayer\ServiceItemConfiguration.cs" />
     <Compile Include="DataLayer\WorkOrderConfiguration.cs" />
@@ -271,6 +272,7 @@
     <Compile Include="Models\InventoryItem.cs" />
     <Compile Include="Models\ITreeNodeDotNet3.cs" />
     <Compile Include="Models\Labor.cs" />
+    <Compile Include="Models\LogEntry.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Part.cs" />
     <Compile Include="Models\PromotionResult.cs" />
