@@ -114,3 +114,4 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Mig
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.ReworkNotes.resources
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\log4net.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\log4net.xml
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.LogEntry.resources

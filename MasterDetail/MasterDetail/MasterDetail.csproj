@@ -263,6 +263,10 @@
     <Compile Include="Migrations\201704190218118_ReworkNotes.Designer.cs">
       <DependentUpon>201704190218118_ReworkNotes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704221823428_LogEntry.cs" />
+    <Compile Include="Migrations\201704221823428_LogEntry.Designer.cs">
+      <DependentUpon>201704221823428_LogEntry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -272,6 +276,7 @@
     <Compile Include="Models\InventoryItem.cs" />
     <Compile Include="Models\ITreeNodeDotNet3.cs" />
     <Compile Include="Models\Labor.cs" />
+    <Compile Include="Models\Log4NetHelper.cs" />
     <Compile Include="Models\LogEntry.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Part.cs" />
@@ -462,6 +467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704190218118_ReworkNotes.resx">
       <DependentUpon>201704190218118_ReworkNotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704221823428_LogEntry.resx">
+      <DependentUpon>201704221823428_LogEntry.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

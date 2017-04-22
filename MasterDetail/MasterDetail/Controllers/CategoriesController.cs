@@ -20,7 +20,6 @@ namespace MasterDetail.Controllers
     {
         private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
 
-
         public async Task<ActionResult> Index()
         {
             // Start the outermost list
