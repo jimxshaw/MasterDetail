@@ -443,10 +443,10 @@
     <Content Include="Views\LogEntries\Edit.cshtml" />
     <Content Include="Views\LogEntries\Index.cshtml" />
     <Content Include="Views\LogEntries\_LogEntries.cshtml" />
+    <Content Include="Views\WorkList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\WorkList\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

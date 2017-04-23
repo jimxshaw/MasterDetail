@@ -31,6 +31,7 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\MasterDetail.pdb
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Antlr3.Runtime.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\EntityFramework.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\EntityFramework.SqlServer.dll
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\log4net.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.Agent.Intercept.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.DependencyCollector.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -66,6 +67,7 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.WebPages.dl
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\System.Web.WebPages.Razor.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Twilio.Api.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\WebGrease.dll
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\log4net.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.xml
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\PagedList.Mvc.xml
@@ -107,12 +109,9 @@ C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Mig
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.Cascading.resources
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.Categories.resources
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.PercentComplete.resources
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.CurrentWorker.resources
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.ReworkNotes.resources
+C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.LogEntry.resources
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.csproj.GenerateResource.Cache
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.dll
 C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.pdb
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.CurrentWorker.resources
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.ReworkNotes.resources
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\log4net.dll
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\bin\log4net.xml
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.Migrations.LogEntry.resources
-C:\YX\projects\MasterDetail\MasterDetail\MasterDetail\obj\Debug\MasterDetail.csprojResolveAssemblyReference.cache
