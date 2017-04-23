@@ -62,6 +62,8 @@ namespace MasterDetail.Controllers
                 _applicationDbContext.WorkOrders.Add(workOrder);
                 await _applicationDbContext.SaveChangesAsync();
 
+                Log4NetHelper.Log(string.Format($"Work order {workOrder.WorkOrderId} created"), LogLevel.INFO, "WorkOrders", workOrder.WorkOrderId, User.Identity.Name, null);
+
                 return RedirectToAction("Edit", new { controller = "WorkOrders", action = "Edit", Id = workOrder.WorkOrderId });
             }
 

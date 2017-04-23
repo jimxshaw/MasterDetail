@@ -137,6 +137,8 @@ namespace MasterDetail.Models
                     break;
             }
 
+            Log4NetHelper.Log(promotionResult.Message, LogLevel.INFO, "WorkOrders", WorkOrderId, HttpContext.Current.User.Identity.Name, null);
+
             if (promotionResult.Success)
             {
                 CurrentWorker = null;
