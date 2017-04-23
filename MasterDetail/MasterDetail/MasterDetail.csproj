@@ -214,6 +214,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PartsController.cs" />
     <Compile Include="Controllers\ServiceItemsController.cs" />
+    <Compile Include="Controllers\WorkListController.cs" />
     <Compile Include="Controllers\WorkOrdersController.cs" />
     <Compile Include="DataLayer\ApplicationDbContext.cs" />
     <Compile Include="DataLayer\ApplicationUserConfiguration.cs" />
@@ -445,6 +446,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\WorkList\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
