@@ -9,7 +9,7 @@ using MasterDetail.Controllers;
 
 namespace MasterDetail.Models
 {
-    public class WorkOrder
+    public class WorkOrder : IWorkListItem
     {
         public int WorkOrderId { get; set; }
 
@@ -63,7 +63,7 @@ namespace MasterDetail.Models
         // Claiming a work order does two things: First, it promotes the work order
         // to its next active status "ing status". Second, it relates the work order
         // to the authenticated user who claimed it.
-        public PromotionResult ClaimWorkOrder(string userId)
+        public PromotionResult ClaimWorkListItem(string userId)
         {
             var promotionResult = new PromotionResult();
 
@@ -102,7 +102,7 @@ namespace MasterDetail.Models
         }
 
 
-        public PromotionResult PromoteWorkOrder(string command)
+        public PromotionResult PromoteWorkListItem(string command)
         {
             var promotionResult = new PromotionResult();
 
@@ -406,6 +406,73 @@ namespace MasterDetail.Models
             }
 
             return promotionResult;
+        }
+
+        public int Id => WorkOrderId;
+
+        public string Status => WorkOrderStatus.ToString();
+
+        public string CurrentWorkerName
+        {
+            get
+            {
+                if (CurrentWorker == null)
+                {
+                    return string.Empty;
+                }
+
+                return CurrentWorker.FullName;
+            }
+        }
+
+        public string EntityFamiliarName => "Worker Order";
+
+        public string EntityFamiliarNamePlural => "Worker Orders";
+
+        public string EntityFormalName => "Worker Order";
+
+        public string EntityFormalNamePlural => "Worker Orders";
+
+        public int PriorityScore
+        {
+            get { return 0; }
+        }
+
+        public IEnumerable<string> RolesWhichCanClaim
+        {
+            get
+            {
+                List<string> rolesWhichCanClaim = new List<string>();
+
+                switch (WorkOrderStatus)
+                {
+                    case WorkOrderStatus.Created:
+                        rolesWhichCanClaim.Add("Clerk");
+                        rolesWhichCanClaim.Add("Manager");
+                        break;
+
+                    case WorkOrderStatus.Processed:
+                        rolesWhichCanClaim.Add("Manager");
+                        rolesWhichCanClaim.Add("Admin");
+                        break;
+
+                    case WorkOrderStatus.Certified:
+                        rolesWhichCanClaim.Add("Admin");
+                        break;
+
+                    case WorkOrderStatus.Rejected:
+                        rolesWhichCanClaim.Add("Manager");
+                        rolesWhichCanClaim.Add("Admin");
+                        break;
+                }
+
+                return rolesWhichCanClaim;
+            }
+        }
+
+        public PromotionResult RelinquishWorkListItem()
+        {
+            throw new NotImplementedException();
         }
     }
 

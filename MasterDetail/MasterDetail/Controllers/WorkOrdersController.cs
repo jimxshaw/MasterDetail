@@ -111,11 +111,11 @@ namespace MasterDetail.Controllers
                 }
                 else if (command == "Claim")
                 {
-                    promotionResult = workOrder.ClaimWorkOrder(User.Identity.GetUserId());
+                    promotionResult = workOrder.ClaimWorkListItem(User.Identity.GetUserId());
                 }
                 else
                 {
-                    promotionResult = workOrder.PromoteWorkOrder(command);
+                    promotionResult = workOrder.PromoteWorkListItem(command);
                 }
 
                 if (!promotionResult.Success)
