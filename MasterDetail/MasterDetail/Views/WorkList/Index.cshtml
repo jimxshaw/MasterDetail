@@ -50,7 +50,7 @@
                 @Html.DisplayFor(modelItem => item.PriorityScore)
             </td>
             <td>
-                @if (item.Status != "Approved" && item.Status != "Canceled")
+                @if (item.Status != "Approved" && item.Status != "Cancelled")
                 {
                     string linkText = item.Status.Substring(item.Status.Length - 3, 3) == "ing" ? "Edit" : "Claim";
                     @Html.ActionLink(linkText, "Edit", item.EntityFormalNamePlural, new { id = item.Id }, null)

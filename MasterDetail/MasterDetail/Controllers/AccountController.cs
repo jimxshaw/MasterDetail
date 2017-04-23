@@ -158,7 +158,7 @@ namespace MasterDetail.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -174,16 +174,18 @@ namespace MasterDetail.Controllers
                     ZipCode = model.ZipCode
                 };
 
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = UserManager.CreateAsync(user, model.Password);
 
-                await UserManager.SetTwoFactorEnabledAsync(user.Id, false);
+                UserManager.SetTwoFactorEnabled(user.Id, false);
 
-                if (result.Succeeded)
-                {
-                    return await GenerateEmailConfirmation(user);
-                }
+                //if (result.Succeeded)
+                //{
+                //    return GenerateEmailConfirmation(user);
+                //}
 
-                AddErrors(result);
+                return GenerateEmailConfirmation(user);
+
+                //AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
@@ -191,16 +193,16 @@ namespace MasterDetail.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<ActionResult> GenerateEmailConfirmation(ApplicationUser user)
+        public ActionResult GenerateEmailConfirmation(ApplicationUser user)
         {
-            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            string code = UserManager.GenerateEmailConfirmationToken(user.Id);
 
             var callbackUrl = Url.Action(
                 "ConfirmEmail",
                 "Account",
                 new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
 
-            await UserManager.SendEmailAsync(
+            UserManager.SendEmail(
                 user.Id,
                 "Confirm your account",
                 "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
