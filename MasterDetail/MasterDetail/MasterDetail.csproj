@@ -210,6 +210,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryItemsController.cs" />
     <Compile Include="Controllers\LaborsController.cs" />
+    <Compile Include="Controllers\LogEntriesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PartsController.cs" />
     <Compile Include="Controllers\ServiceItemsController.cs" />
@@ -434,6 +435,12 @@
     <Content Include="Views\Shared\EditorTemplates\DateReadyOnly.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CustomNumberFormat.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CustomNumberFormat.cshtml" />
+    <Content Include="Views\LogEntries\Create.cshtml" />
+    <Content Include="Views\LogEntries\Delete.cshtml" />
+    <Content Include="Views\LogEntries\Details.cshtml" />
+    <Content Include="Views\LogEntries\Edit.cshtml" />
+    <Content Include="Views\LogEntries\Index.cshtml" />
+    <Content Include="Views\LogEntries\_LogEntries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

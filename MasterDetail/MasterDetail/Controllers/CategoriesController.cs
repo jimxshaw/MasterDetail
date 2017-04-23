@@ -20,7 +20,7 @@ namespace MasterDetail.Controllers
     {
         private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
 
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             // Start the outermost list
             string fullString = "<ul>";

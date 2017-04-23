@@ -140,6 +140,12 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+<div class="row">
+    <div class="col-md-offset-2 col-md-10">
+        @{Html.RenderAction("LogEntries", "LogEntries", new { entityFormalNamePlural = "WorkOrders", entityKeyValue = Model.WorkOrderId });}
+    </div>
+</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/workorder.js"></script>
